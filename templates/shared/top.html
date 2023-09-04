@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% url 'home:index' as home_url %}
+    {% url 'programs:programs' as programs_url %}
+    {% url 'howtohelp:help' as help_url %}
+    {% url 'events:events' as events_url %}
+    {% url 'reports:reports' as reports_url %}
+    {% url 'contact:contact' as contact_url %}
+    {% url 'gallery:gallery' as gallery_url %}
+    <body data-media-url="{% get_media_prefix %}">
+    {% get_media_prefix as MEDIA %}
+    <title>Centro de Desarrollo Integral Varonil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Página web del Centro de Desarrollo Integral Varonil 'Misión San José'. Institución de Asistencia Privada.">
+    <meta name="author" content="Jorge Niño y Marcela Vazquez Ibanez">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700|Anton" rel="stylesheet">
+    <link href="{% static 'vendor/font-awesome/css/all.css'%}" rel="stylesheet"> <!--load all styles -->
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static '/css/jquery-ui.css' %} ">
+    <link rel="stylesheet" href="{% static '/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static '/fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/custom.css' %}">
+    <link rel="icon" href="{% static '/images/cediv/icon.png' %}">
+
+</head>
+<body>
+<div class="row bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light js-sticky-header site-navbar-target"
+        style="background-color: #F2F2F2;">
+        <a href="/"><img src="{% static 'images/cediv/logosi.png' %}" class="site-logo img-fluid"
+                         style="width: 120px; height: 80px"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item {% if request.path == home_url %} active {%endif%}">
+                    <a class="nav-link" href="{{home_url}}">&nbsp;&nbsp;Inicio&nbsp;&nbsp;<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item {% if request.path == programs_url %} active {%endif%}">
+                    <a class="nav-link" href="{{programs_url}}">&nbsp;&nbsp;Programas Sociales&nbsp;&nbsp;</a>
+                </li>
+                <li class="nav-item {% if request.path == help_url %} active {%endif%} ">
+                    <a class="nav-link" href="{{help_url}}">&nbsp;&nbsp;Como Ayudar&nbsp;&nbsp;</a>
+                </li>
+                <li class="nav-item {% if request.path == events_url %} active {%endif%} ">
+                    <a class="nav-link" href="{{events_url}}">&nbsp;&nbsp;Noticias y Eventos&nbsp;&nbsp;</a>
+                </li>
+                <li class="nav-item {% if request.path == reports_url %} active {%endif%} ">
+                    <a class="nav-link" href="{{reports_url}}">&nbsp;&nbsp;Transparencia y
+                        Certificaciones&nbsp;&nbsp;</a>
+                </li>
+                <li class="nav-item {% if request.path == contact_url %} active {%endif%} ">
+                    <a class="nav-link" href="{{contact_url}}">&nbsp;&nbsp;Contacto&nbsp;&nbsp;</a>
+                </li>
+                <li class="nav-item {% if request.path == gallery_url %} active {%endif%} ">
+                    <a class="nav-link" href="{{gallery_url}}">&nbsp;&nbsp;Galería&nbsp;&nbsp;</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

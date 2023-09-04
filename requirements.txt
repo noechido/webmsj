@@ -1,0 +1,8 @@
+django==2.2.1
+gunicorn==19.9.0
+whitenoise==5.0.1
+django-heroku==0.3.1
+pillow==6.1.0
+cloudinary==1.12.0
+django-cloudinary-storage==0.2.3
+requests==2.22.0

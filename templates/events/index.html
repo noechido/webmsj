@@ -1,0 +1,140 @@
+{% load static %}
+{% load cloudinary %}
+{% include "shared/top.html" %}
+
+<div class="row bg-light counter">
+    <div class="container">
+        {% if site %}
+        <div class="jumbotron jumbotron-fluid bg-dark">
+
+            <div class="jumbotron-background">
+                <img src="{{site.imagen.url}}" class="blur ">
+            </div>
+
+            <div class="container text-white text-center">
+                <h1 class="card-title h2 my-4 py-2 text-white">Eventos y Noticias</h1>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5">{{site.descripcion}}</p>
+                <div style="display:inline-block;">
+                    <a href="/ayudar" class="btn btn-primary2 primary">
+                        <div style="color: white;"><i class="fa fa-clone left"></i>
+                            ¡Dona Ahora!
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <hr class="mt-2 mb-2">
+        {% endif %}
+        <h1 class="text-center secondary">Eventos</h1>
+        {% if events %}
+        <div class="card-deck">
+            {% for e in events %}
+            <div class="col-sm-12">
+                <div class="card" data-aos="fade-up">
+                    <div class="image-container">
+                        <a href="{{e.imagen.url}}"><img src="{{e.imagen.url}}"
+                        class="pt-1 img-fluid {% if e.rotar_imagen %} rotate-img {% endif %}" style="width:80%"></a>
+                    </div>
+                    <h3 class="p-3 text-center">{{e.nombre}}</h3>
+                    <div class="card-body text-justify">
+                        {{e.descripcion}}
+                    </div>
+                    <div class="card-footer">
+                        {{e.lugar}}<br>
+                        {{e.fecha}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h1 class="text-center">¡Aquí aparecerán los eventos!</h1>
+        {% endif %}
+    </div>
+</div>
+<div class="row bg-light p-1 text-center" data-aos="fade-up">
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="pagination justify-content-center">
+                {% if events %}
+                <span class="step-links">
+                    {% if events.has_previous %}
+                        <a href="?page=1">&laquo; primera</a>
+                        <a href="?page={{ events.previous_page_number }}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ events.number }} de {{ events.paginator.num_pages }}.
+                    </span>
+
+                    {% if events.has_next %}
+                        <a href="?page={{ events.next_page_number }}">siguiente</a>
+                        <a href="?page={{ events.paginator.num_pages }}">ultimo &raquo;</a>
+                    {% endif %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+<div class="row bg-light counter" data-aos="fade-up">
+    <div class="container">
+        <h1 class="text-center secondary">Noticias</h1>
+        {% if notices %}
+        <div class="card-deck">
+            {% for n in notices %}
+            <div class="col-sm-12">
+                <div class="card" data-aos="fade-up">
+                    <div class="image-container">
+                    <a href="{{n.imagen.url}}"><img src="{{n.imagen.url}}"
+                        class="pt-1 img-fluid {% if n.rotar_imagen %} rotate-img {% endif %}"
+                        style="width:80%"/></a>
+                    </div>
+                    <h3 class="p-3 text-center">{{n.nombre}}</h3>
+                    <div class="card-body text-justify">
+                        {{n.descripcion}}
+                    </div>
+                    <div class="card-footer">
+                        {{n.lugar}}<br>
+                        {{n.fecha}}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <h1 class="text-center">¡Aquí aparecerán las noticias!</h1>
+        {% endif %}
+    </div>
+</div>
+<div class="row bg-light p-1 text-center" data-aos="fade-up">
+    <div class="container">
+        <div class="col-sm-12">
+            <div class="pagination justify-content-center">
+                {% if events %}
+                <span class="step-links">
+                    {% if notices.has_previous %}
+                        <a href="?page=1">&laquo; primera</a>
+                        <a href="?page={{ notices.previous_page_number }}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ notices.number }} de {{ notices.paginator.num_pages }}.
+                    </span>
+
+                    {% if notices.has_next %}
+                        <a href="?page={{ notices.next_page_number }}">siguiente</a>
+                        <a href="?page={{ notices.paginator.num_pages }}">ultima &raquo;</a>
+                    {% endif %}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+
+{% include "shared/bottom.html" %}

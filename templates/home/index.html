@@ -1,0 +1,520 @@
+{% load static %}
+{% load cloudinary %}
+{% include "shared/top.html" %}
+<div class="row bg-light">
+    <div class="container">
+        <br><br>
+        <div class="col-md-12" data-aos="fade-up">
+            <h1 class="secondary text-center">Centro de Desarrollo Integral Varonil San José I.A.P.</h1>
+            <h1 class="secondary text-center">"MISIÓN SAN JOSÉ"</h1>
+        </div>
+        <br><br>
+    </div>
+</div>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-content">
+        </div>
+        {% for i in imagenes|slice:":3" %}
+        {% if forloop.first %}
+        <div class="carousel-item active">
+            {% else %}
+            <div class="carousel-item">
+                {% endif %}
+                <img class="d-block w-100" src="{{i.path.url}}" alt="Imagen">
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" style="color:black;" href="#carouselExampleControls" role="button"
+            data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" style="color:black;" href="#carouselExampleControls" role="button"
+            data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<div class="row bg-light">
+    <div class="container">
+        <br><br>
+        <div class="col-sm-12" data-aos="fade-up">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title secondary text-center">Misión</h2>
+                        <p class="card-text text-justify">
+                            {% if mision %}
+                            {{mision.mision}}
+                            {% else %}
+                            Promover la protección y el desarrollo integral de cualquier persona que se encuentre en
+                            situación de vulnerabilidad social, garantizando el acceso a satisfactores básicos de
+                            subsistencia y desarrollo; para lograr un pleno ejercicio de sus derechos y una formación
+                            con sentido humano que potencie sus capacidades individuales para el acceso a una vida
+                            digna, sin distinción alguna por raza, sexo, religión, preferencia sexual u otra condición
+                            social.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title secondary text-center">Visión</h2>
+                        <p class="card-text text-justify">
+                            {% if vision %}
+                            {{vision.vision}}
+                            {% else %}
+                            Ser un agente de cambio que promueva el desarrollo integral en las distintas comunidades que
+                            se atienden, brindando una atención humana y de calidad, potencializando sus capacidades
+                            individuales y dignificando la calidad de vida.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title secondary text-center">Valores</h2>
+                        <ul class="card-text text-justify">
+                            {% if valores %}
+                            {% for v in valores %}
+                            <li>{{ v.valor }}</li>
+                            {% endfor %}
+                            {% else %}
+                            <li>Respeto</li>
+                            <li>Tolerancia</li>
+                            <li>Amor</li>
+                            <li>Solidaridad</li>
+                            <li>Justicia</li>
+                            <li>Amabilidad</li>
+                            <li>Ética</li>
+                            <li>Inclusión</li>
+                            <li>Vocación de servicio</li>
+                            <li>Honestidad</li>
+                            <li>Cooperación</li>
+                            <li>Confíanza</li>
+                            <li>Transparencia</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+<div class="row bg-light">
+    <div class="container">
+        <br><br><br>
+        <div class="card mb-3" data-aos="fade-up">
+            <div class="card-body">
+                <div class="embed-responsive embed-responsive-16by9">
+                    {% if video %}
+                    <iframe width="300px" height="300px" src="{{ video }}" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    {% else %}
+                    <iframe width="100%" height="100%"
+                            src="https://www.youtube.com/embed/dFRQRpdKyyg"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>
+<div class="row bg-light" data-aos="fade-up">
+    <br><br>
+    <div class="container" data-aos="fade-up">
+        <hr>
+        <h1 class="text-center secondary">Quiénes Somos</h1>
+        <div class="card-deck">
+            {% if about %}
+            <div class="card" data-aos="fade-up">
+                <div class="card-header text-center">
+                    <figure>
+                        <img class="img-fluid" src="{{about.imagenA.url}}" alt="Card image cap">
+                    </figure>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">{{ about.textoA }}</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-header text-center">
+                    <figure>
+                        <img class="card-img-top img-fluid" src="{{about.imagenB.url}}" alt="Card image cap">
+                    </figure>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">{{ about.textoB }}</p>
+                </div>
+            </div>
+            <div class="card" data-aos="fade-up">
+                <div class="card-header text-center">
+                    <figure>
+                        <img class="card-img-top img-fluid" src="{{about.imagenC.url}}" alt="Card image cap">
+                    </figure>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">{{ about.textoC }}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <div class="card-header text-center">
+                    <figure>
+                        <img class="img-fluid" src="{% static 'images/cediv/QS1-2.png' %}"
+                            alt="Card image cap">
+                    </figure>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">Somos una institución sin fines lucrativos, constituidos con la
+                        figura jurídica
+                        de Institución de Asistencia Privada (I.A.P.), regulados por el Órgano de Gobierno: Junta de
+                        Asistencia Privada del Estado de Querétaro.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-center">
+                    <figure>
+                        <img class="img-fluid" src="{% static 'images/cediv/QS2.png' %}"
+                            alt="Card image cap">
+                    </figure>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-justify">La institución trabaja en las comunidades de La Purísima, La
+                        Laborcilla 41 y El
+                        Pozo, en los municipios de Querétaro y El Marqués, dentro del estado de Querétaro..</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-center">
+                    <figure>
+                        <img class="img-fluid" src="{% static 'images/cediv/QS3.png' %}"
+                            alt="Card image cap">
+                    </figure>
+                </div>
+                <div class="card-body text-justify">
+                    <p class="card-text">Somos mejor conocidos por nuestros beneficiarios como “Misión San José”.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <br><br>
+</div>
+<div class="row bg-light" data-aos="fade-up">
+    <br><br>
+    <div class="container">
+        <hr>
+        <div class="row w-100 bg-light">
+            <div class="col-sm-12">
+                <h1 class="text-center secondary">Patronato</h1>
+            </div>
+        </div>
+        
+        {% if patrons %}
+        {% for p in patrons %}
+        {% if forloop.first %}
+        <div class="row bg-light">
+            <div class="text-center col-sm-4">
+            </div>
+            <div class="text-center col-sm-4 px-sm-0" data-aos="fade-up">
+                <div>
+                    <div class="block-testimony-1 text-center px-sm-0 h-100">
+                        <div class="card text-center px-sm-0" style="width:20rem;">
+                            <figure>
+                                <img src="{{p.imagen.url}}" alt="Image"
+                                     class="img-fluid rounded-circle mx-auto">
+                            </figure>
+                            <div class="card-body">
+                                <h3>{{p.nombre}}</h3>
+                                <hr>
+                                <br>{{p.titulo}}
+                                <hr>
+                                <br>{{p.puesto}}<p></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light col-sm-12">
+            <div class="card-deck">
+            {% else %}
+                <div class="text-center col-sm-4 px-sm-0">
+                    <div class="block-testimony-1 text-center h-100 px-sm-0" data-aos="fade-up ">
+                        <div class="card" style="width:20rem;">
+                            <figure>
+                                <img src="{{p.imagen.url}}" alt="Image"
+                                    class="img-fluid rounded-circle mx-auto">
+                            </figure>
+                            <div class="card-body">
+                                <h3>{{p.nombre}}</h3>
+                                <hr>
+                                <br>{{p.titulo}}
+                                <hr>
+                                <br>{{p.puesto}}<p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% if forloop.last %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <div class="row bg-light">
+            <div class="text-center col-sm-4">
+            </div>
+            <div class="text-center col-sm-4" style="font-size: 16px" data-aos="fade-up">
+                <div>
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/gio.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>GIOVVANI OCELO CHÁVEZ</p>
+                        <hr>
+                        <br>LICENCIADO EN EDUCACIÓN Y DESARROLLO HUMANO
+                        <hr>
+                        <br>PRESIDENTE DE PATRONATO<p></p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="text-center col-sm-4">
+                <a></a>
+            </div>
+        </div>
+        <div class="row bg-light">
+            <div class="text-center col-sm-3">
+                <div class="block-testimony-1 text-center" data-aos="fade-up">
+                    <figure>
+                        <img src="{% static 'images/cediv/alicia.png' %}" alt="Image"
+                             class="img-fluid rounded-circle mx-auto">
+                    </figure>
+                    <p>ALICIA GARCÍA RODRÍGUEZ
+                    </p>
+                    <hr>
+                    <br>LICENCIADO EN NUTRICIÓN
+                    <hr>
+                    <br>SECRETARIA DE PATRONATO
+                    <p></p>
+
+                </div>
+            </div>
+            <div class="text-center col-sm-3">
+                <div class="block-testimony-1 text-center">
+                    <figure>
+                        <img src="{% static 'images/cediv/julieta.png' %}" alt="Image"
+                             class="img-fluid rounded-circle mx-auto">
+                    </figure>
+                    <p>JULIETA TELLEZ MENDEZ
+                    </p>
+                    <hr>
+                    <br>TSU EN CONTABILIDAD
+                    <hr>
+                    <br>VOCAL DE PATRONATO
+                    <p></p>
+
+                </div>
+            </div>
+
+            <div class="text-center col-sm-3">
+                <div class="block-testimony-1 text-center">
+                    <figure>
+                        <img src="{% static 'images/cediv/itzel.png' %}" alt="Image"
+                             class="img-fluid rounded-circle mx-auto">
+                    </figure>
+                    <p>ITZEL CASTAÑEDA BARRERA
+                    </p>
+                    <hr>
+                    <br>MAESTRÍA EN CREACIÓN EDUCATIVA
+                    <hr>
+                    <br>VOCAL DE PATRONATO
+                    <p></p>
+                </div>
+            </div>
+            <div class="text-center col-sm-3">
+                <div class="block-testimony-1 text-center">
+                    <figure>
+                        <img src="{% static 'images/cediv/guadalupe.png' %}" alt="Image"
+                             class="img-fluid rounded-circle mx-auto">
+                    </figure>
+                    <p>MA. GUADALUPE ESPINOSA MAYA
+                    </p>
+                    <hr>
+                    <br>TSU PLURICULTURISTA
+                    <hr>
+                    <br>TESORERA DE PATRONATO
+                    <p></p>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="row bg-light">
+            <div class="col-sm-12">
+                <hr style="border-color:lightgray">
+            </div>
+            <div class="row w-100 bg-light">
+                <div class="col-sm-12">
+                    <h1 class="text-center secondary">Direcciones</h1>
+                </div>
+            </div>
+
+            {% if directors %}
+            <div class="row w-100 bg-light">
+                {% for d in directors %}
+                {% if forloop.first %}
+                <div class="card-deck">
+                {% endif %}
+                <div class="text-center col-sm-4 px-sm-0">
+                    <div class="block-testimony-1 text-center h-100 px-sm-0" data-aos="fade-up">
+                        <div class="card px-sm-0" style="width:20rem;">
+                            <figure>
+                                <img src="{{d.imagen.url}}" alt="Image"
+                                     class="img-fluid rounded-circle mx-auto">
+                            </figure>
+                            <div class="card-body">
+                                <h3>{{d.nombre}}</h3>
+                                <hr>
+                                <br>{{d.titulo}}
+                                <hr>
+                                <br>{{d.puesto}}<p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="row bg-light">
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/gio.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>GIOVVANI OCELO CHÁVEZ
+                        </p>
+                        <hr>
+                        <br>LICENCIADO EN EDUCACIÓN Y DESARROLLO HUMANO
+                        <hr>
+                        <br>DIRECCION GENERAL
+                        <p></p>
+                    </div>
+                </div>
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/carlos.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>CARLOS MERCADO TELLEZ
+                        </p>
+                        <hr>
+                        <br>LICENCIADO EN GASTRONOMÍA
+                        <hr>
+                        <br>DIRECCION ADMINISTRATIVA Y PROCURACIÓN DE FONDOS
+                        <p></p>
+                    </div>
+                </div>
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/lourdes.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>MA. LOURDES FUENTES OVIEDO
+                        </p>
+                        <hr>
+                        <br>LICENCIADO EN CONTABILIDAD
+                        <hr>
+                        <br>DIRECCION DE CONTABLE
+                        <p></p>
+                    </div>
+                </div>
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/edith.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>MA. EDITH VAZQUEZ MORA
+                        </p>
+                        <hr>
+                        <br>LICENCIADO EN PSICOLOGÍA
+                        <hr>
+                        <br>DIRECCION DE SERVICIO SOCIAL Y VOLUNTARIADO
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row w-100 bg-light">
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/jose.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>DR. JOSE EDUARDO PONCE RAMÍREZ
+                        </p>
+                        <hr>
+                        <br>LICENCIADO EN MEDICINA
+                        <hr>
+                        <br>DIRECCION DE SALUD
+                        <p></p>
+                    </div>
+                </div>
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/alicia.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>ALICIA GARCÍA RODRÍGUEZ
+                        </p>
+                        <hr>
+                        <br>LICENCIADO EN NUTRICIÓN
+                        <hr>
+                        <br>SECRETARIA DE PATRONATO
+                        <p></p>
+                    </div>
+                </div>
+                <div class="text-center col-sm-3">
+                    <div class="block-testimony-1 text-center">
+                        <figure>
+                            <img src="{% static 'images/cediv/itzel.png' %}" alt="Image"
+                                 class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <p>MTRA. ITZEL CASTAÑEDA BARRERA
+                        </p>
+                        <hr>
+                        <br>MAESTRÍA EN CREACION EDUCATIVA
+                        <hr>
+                        <br>DIRECCIÓN EDUCATIVA
+                        <p></p>
+                    </div>
+                </div>
+                <div class="col-sm-3"><a></a></div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="basic">
+    {% include "shared/bottom.html" %}
+</div>

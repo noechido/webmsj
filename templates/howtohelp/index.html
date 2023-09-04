@@ -1,0 +1,83 @@
+{% load static %}
+{% load cloudinary %}
+{% include "shared/top.html" %}
+<div class="row bg-light">
+    <div class="container">
+        <br><br>
+        {% if site %}
+        <div class="jumbotron jumbotron-fluid bg-dark">
+            <div class="jumbotron-background">
+                <img src="{{site.imagen.url}}" class="blur img-fluid">
+            </div>
+
+            <div class="container text-white text-center">
+                <h1 class="card-title h2 my-4 py-2 text-white">Como Ayudar</h1>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5">{{site.descripcion}}</p>
+                <div style="display:inline-block;">
+                    <a href="/ayudar" class="btn btn-primary2 primary">
+                        <div style="color: white;"><i class="fa fa-clone left"></i>
+                            ¡Dona Ahora!
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <hr class="mt-2 mb-2">
+        {% endif %}
+    </div>
+</div>
+<div class="row bg-light counter">
+    <div class="container">
+        <div class="card-deck">
+            {% for m in hm %}
+            <div class="col-sm-4">
+                <div class="block-team-member-1 text-center rounded card py-3 px-0" data-aos="fade-up">
+                    <figure class="m-0">
+                        <img class="img-fluid" src="{{m.imagen.url}}" alt="Card image cap">
+                    </figure>
+                    <div class="card-body p-0">
+                        <h4 class="text-center">{{ m.nombre }}</h3>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {% endfor %}
+        </div>
+        <br><br>
+    </div>
+</div>
+<div class="row bg-light counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center secondary">¡Dona Ahora!</h1>
+                <br>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-block">
+                <div class="row my-5">
+                    <div class="col-sm-6 text-center my-5">
+                        <img class="card-img-top img-fluid" src="{{mi.imagen.url}}" alt="Card image cap">
+                        <br><br>
+                        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KG3KZUY9LFNH2" class="btn btn-primary2" style="height:50px; width:150px;display:inline-block;"><p
+                                style="color:white; "><i class="fab fa-paypal fa-2x"></i><span
+                                style="font-size:25px"> Donar</span></p></a>
+                    </div>
+                    <div class="col-sm-6 text-left my-5">
+                        <h3>Datos Bancarios</h3>
+                        <p><b>{{mi.nombre}}</b></p>
+                        <p><b>NOMBRE:</b> {{mi.nombre_cuenta}}</p>
+                        <p><b>CUENTA:</b> {{mi.numero_cuenta}}</p>
+                        <p><b>CLABE:</b> {{mi.clabe_cuenta}}</p>
+                        <p><b>SUCURSAL:</b> {{mi.sucursal_cuenta}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+
+{% include "shared/bottom.html" %}

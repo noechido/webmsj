@@ -1,0 +1,115 @@
+{% load static %}
+{% load cloudinary %}
+{% include "shared/top.html" %}
+<div class="row bg-light counter">
+    <div class="container">
+        {% if site %}
+        <div class="jumbotron jumbotron-fluid bg-dark">
+
+            <div class="jumbotron-background">
+                <img src="{{site.imagen.url}}" class="blur">
+            </div>
+
+            <div class="container text-white text-center">
+                <h1 class="card-title h2 my-4 py-2 text-white">Transparencia y Certificaciones</h1>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5">{{site.descripcion}}</p>
+                <div style="display:inline-block;">
+                    <a href="/ayudar" class="btn btn-primary2 primary">
+                        <div style="color: white;"><i class="fa fa-clone left"></i>
+                            ¡Dona Ahora!
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <hr class="mt-2 mb-2">
+        {% endif %}
+        <br>
+    </div>
+</div>
+<div class="row bg-light">
+    <div class="container">
+        <br><br>
+        <div class="col-sm-12" data-aos="fade-up">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title secondary text-center">Reportes</h2>
+                        <p class="card-text text-justify">
+                            {% if reports %}
+                            <ul>
+                                {% for r in reports %}
+                                    <li>
+                                        <h5>
+                                            <a class="secondary" href="{{r.reporte_url}}">{{r.nombre}}</a>
+                                        </h5>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            ¡Aquí aparecerán los reportes!
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title secondary text-center">Certificaciones</h2>
+                        <p class="card-text text-justify">
+                            {% if certifications %}
+                            <ul>
+                            {% for c in certifications %}
+                            <li>
+                                {% if c.imagen %}
+                                <h5>
+                                    <a class="secondary" href="{{c.imagen.url}}">{{c.nombre_certificacion}}</a>
+                                </h5>
+                                {% else %}
+                                <h5>
+                                    {{c.nombre_certificacion}}
+                                </h5>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                            </ul>
+                            {% else %}
+                            ¡Aquí aparecerán las certificaciones!
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title secondary text-center">Otros</h2>
+                        <p class="card-text text-justify">
+                        {% if other %}
+                        <ul>
+                            {% for o in other %}
+                            <li>
+                                {% if o.imagen %}
+                                <h5>
+                                    <a class="secondary" href="{{o.imagen.url}}">{{o.nombre_otro}}</a>
+                                </h5>
+                                {% else %}
+                                <h5>
+                                    {{o.nombre_otro}}
+                                </h5>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        ¡Aquí aparecerá otra información!
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+
+{% include "shared/bottom.html" %}

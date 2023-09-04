@@ -1,0 +1,37 @@
+{% load static %}
+{% include "shared/top.html" %}
+{% load cloudinary %}
+<div class="row bg-light counter">
+    <div class="container">
+        <div class="row text-center text-lg-left" data-aos="fade-up">
+            {% for i in images %}
+            <div class="col-lg-3 col-md-4 col-6 py-3">
+                <div class="card">
+                    <a href="{{i.path.url}}" target="_blank" class="d-block h-100 mb-0">
+                        {% cloudinary i.path angle="ignore" class="img-fluid img-thumbnail"%}
+                    </a>
+                    <div class="card-body py-2">
+                        <h2 class="card-title secondary text-center">{{ i.anio }}</h2>
+                        <p class="card-text text-justify">
+                            {% if i.categorias %}
+                            <ul>
+                                {% for g in i.categorias.all %}
+                                <li>
+                                    <h4 class="">
+                                        {{g.nombre_categoria}}
+                                    </h4>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br><br>
+    </div>
+</div>
+
+{% include "shared/bottom.html" %}

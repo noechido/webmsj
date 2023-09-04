@@ -1,0 +1,79 @@
+{% load static %}
+{% load cloudinary %}
+{% include "shared/top.html" %}
+<div class="row bg-light">
+    <div class="container">
+        <br><br>
+        {% if site %}
+        <div class="jumbotron jumbotron-fluid bg-dark">
+
+            <div class="jumbotron-background">
+                <img src="{{site.imagen.url}}" class="blur img-fluid">
+            </div>
+
+            <div class="container text-white text-center">
+                <h1 class="card-title h2 my-4 py-2 text-white">Programas Sociales</h1>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5">{{site.descripcion}}</p>
+                <div style="display:inline-block;">
+                    <a href="/ayudar" class="btn btn-primary2 primary">
+                        <div style="color: white;"><i class="fa fa-clone left"></i>
+                            ¡Dona Ahora!
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <hr class="mt-2 mb-2">
+        {% endif %}
+    </div>
+</div>
+<div class="row bg-light counter" data-aos="fade-up">
+    <div class="container">
+        <br>
+        {% for p in programs %}
+        <div class="col-sm-12">
+            <div class="block-team-member-2 text-center rounded card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="card-title secondary text-center">{{p.subtitulo}}</h2></br>
+                        </div>
+                        <div class="col-sm-6">
+                            <figure>
+                                <img class="text-center" src="{{p.imagen.url}}" alt="Card image cap">
+                            </figure>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="card-text text-justify">{{p.descripcion}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% for dc in p.colecciones_datos.all %}<div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="text-center secondary">{{dc.titulo_datos |default_if_none:"&nbsp;"}}</h2>
+                            <br>
+                        </div>
+                        {% for d in dc.datos.all %}
+                            <div class="col-md-4">
+                                <div class="block-counter-1 block-counter-1-sm text-center">
+                                    <div class="number text-center py-0"><span data-number="{{d.numero}}">0</span></div>
+                                    <b class="caption text-black text-center py-0">{{d.nombre_dato}}</b>
+                                </div>
+                            </br>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <br><br>
+        {% endfor %}
+        <br><br>
+    </div>
+</div>
+
+{% include "shared/bottom.html" %}
